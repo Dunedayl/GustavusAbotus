@@ -1,2 +1,1 @@
-release: tsc
-worker: node out/main.js
+worker: tsc && node out/main.js
