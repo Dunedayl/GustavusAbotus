@@ -33,10 +33,10 @@ request(url, options, (error, res, body) => {
 
 function handleTimeCommand(message) {
     let now = moment();
-    let then = moment(new Date(2020, 0, 28, 17, 0, 0));
+    let then = moment(new Date(2020, 0, 30, 17, 0, 0));
     let ms = then.fromNow();
     let d = moment.duration(ms);
-    let text = "Санин Час Ч " + ms;
+    let text = "Саня узнает свою судьбу через " + ms;
     message.reply(text);
 }
 
