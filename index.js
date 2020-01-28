@@ -50,7 +50,7 @@ function handleAniptikoCommand(message, arguments) {
 }
 
 function handleAnyaptikoCommand(message, arguments) {
-    const photo = namikoPhotos[Math.floor(Math.random() * files.length)];
+    const photo = namikoPhotos[Math.floor(Math.random() * namikoPhotos.length)];
     return message.reply("Фото Намико ", { files: [buildPathToNamikoPhoto(photo)] });
 }
 
