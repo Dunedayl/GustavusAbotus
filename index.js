@@ -66,19 +66,13 @@ function processUser(message) {
 }
 
 function processCommand(message) {
-
     let args = message.content.substring(PREFIX.length).split(" ");
 
     let command = args[0];
-    let commandHandler;
-    try {
-
-        if (commandHandler = commandHandlers.find(x => x.name === command).handle) {
-
-            commandHandler(message);
-        }
-    } catch {    }
-
+    let commandHandler = commandHandlers.find(x => x.name === command);
+    if (commandHandler !== undefined) {
+        commandHandler.handle(message);
+    }
 }
 
 const users = [
