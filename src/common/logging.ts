@@ -12,7 +12,7 @@ export function log(level: LogLevelString, message: string, context?: any): void
     const logLevelPriority = LogLevelPriority[level];
     const configLevelPriority = LogLevelPriority[DefaultConfig.logLevel];
 
-    if (logLevelPriority < configLevelPriority) { return; }
+    if (logLevelPriority > configLevelPriority) { return; }
 
     message = formatMessage(level, message);
     context ? console.log(message, context) : console.log(message);
