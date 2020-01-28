@@ -2,21 +2,24 @@
   "name": "discord",
   "version": "1.0.0",
   "description": "Discord Server Bot",
-  "main": "index.js",
+  "main": "out/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node out/main.js"
   },
   "author": "Dunedayl",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^13.5.0",
+    "@types/request": "^2.48.4",
     "axios": "^0.19.2",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "instagram-web-api": "^2.1.0",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Dunedayl/GustavusAbotus.git"
