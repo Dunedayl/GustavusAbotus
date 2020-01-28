@@ -9,7 +9,7 @@ const request = require('request');
 
 
 const url = "https://www.instagram.com/sololomka/?__a=1&max_id={end_cursor}";
-const options = {json: true};
+const options = { json: true };
 const temp = [];
 
 let fs = require("fs");
@@ -19,12 +19,12 @@ let arrayofstring = text.split('\n\n');
 
 request(url, options, (error, res, body) => {
     if (error) {
-        return  console.log(error)
+        return console.log(error)
     }
 
     if (!error && res.statusCode == 200) {
         body['graphql']['user']['edge_owner_to_timeline_media']['edges'].forEach(element => {
-            if (element['node']['is_video'] == false){
+            if (element['node']['is_video'] == false) {
                 temp.push(element['node']['shortcode']);
             }
         });
@@ -41,20 +41,20 @@ function handleTimeCommand(message) {
 }
 
 function handleAniptikoCommand(message) {
-    let item = arrayofstring[Math.floor(Math.random()*arrayofstring.length)];
-    message.reply('\n'+ item);
+    let item = arrayofstring[Math.floor(Math.random() * arrayofstring.length)];
+    message.reply('\n' + item);
 }
 
 function handleAnyaptikoCommand(message) {
     let fs = require('fs');
     let files = fs.readdirSync('Namiko\\');
-    let photo = files[Math.floor(Math.random()*files.length)];
-    message.reply("Фото Намико ", {files: ["Namiko\\"+photo]});
+    let photo = files[Math.floor(Math.random() * files.length)];
+    message.reply("Фото Намико ", { files: ["Namiko\\" + photo] });
 }
 
 function handleInstagramCommand(message) {
-    let photo = temp[Math.floor(Math.random()*temp.length)];
-    message.reply("Фото Намико https://www.instagram.com/p/"+photo+"/");
+    let photo = temp[Math.floor(Math.random() * temp.length)];
+    message.reply("Фото Намико https://www.instagram.com/p/" + photo + "/");
 }
 
 function processUser(message) {
@@ -66,13 +66,19 @@ function processUser(message) {
 }
 
 function processCommand(message) {
+
     let args = message.content.substring(PREFIX.length).split(" ");
 
     let command = args[0];
-    if (command) {
-        let commandHandler = commandHandlers[command].handle;
-        commandHandler(message);
-    }
+    let commandHandler;
+    try {
+
+        if (commandHandler = commandHandlers.find(x => x.name === command).handle) {
+
+            commandHandler(message);
+        }
+    } catch {    }
+
 }
 
 const users = [
@@ -83,7 +89,7 @@ const users = [
     {
         id: '281847177213509643',
         reactions: ['🦇']
-    },
+    }
 ];
 
 const commandHandlers = [
@@ -109,7 +115,7 @@ bot.on('ready', () => {
     console.log('Bot Start');
 });
 
-bot.on('message',  message => {
+bot.on('message', message => {
     processUser(message);
     processCommand(message);
 });
