@@ -59,7 +59,7 @@ bot.on('message',  message => {
         case 'time':
 
             var now = moment();
-            var then = moment([2020, 00, 28, 17, 00, 00]);
+            var then = moment([2020, 00, 28, 16, 30, 00]);
             var ms = then.fromNow();
             var d = moment.duration(ms);
             var text = "Санин Час Ч " + ms;
