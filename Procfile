@@ -1,1 +1,2 @@
-worker: node index.js
+release: tsc
+worker: node out/main.js
