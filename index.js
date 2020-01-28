@@ -7,7 +7,6 @@ const TOKEN = process.env.DISCORD_TOKEN;
 const PREFIX = '!';
 const request = require('request');
 
-console.log(TOKEN);
 
 let url = "https://www.instagram.com/sololomka/?__a=1&max_id={end_cursor}";
 let options = {json: true};
@@ -31,7 +30,6 @@ request(url, options, (error, res, body) => {
             }
         });
 
-        console.log(temp[1]);
         };
 });
 
@@ -41,11 +39,8 @@ var text = fs.readFileSync("./data.txt", "utf-8");
 
 var arrayofstring = text.split('\n\n');
 
-console.log(arrayofstring.length)
-
-
 bot.on('ready', () => {
-    console.log('SHS');
+    console.log('Bot Start');
 });
 
 bot.on('message',  message => {
@@ -86,7 +81,6 @@ bot.on('message',  message => {
         
         case 'instagram':
 
-            console.log("https://www.instagram.com/p/"+temp[0]+"/");
             var photo = temp[Math.floor(Math.random()*temp.length)];
             message.reply("Фото Намико https://www.instagram.com/p/"+photo+"/");
             break;
