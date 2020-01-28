@@ -36,10 +36,8 @@ function buildPathToNamikoPhoto(fileName) {
 }
 
 function handleTimeCommand(message, arguments) {
-    let now = moment();
     let then = moment(new Date(2020, 0, 30, 17, 0, 0));
     let ms = then.fromNow();
-    let d = moment.duration(ms);
     let text = "Саня узнает свою судьбу " + ms;
     return message.reply(text);
 }
