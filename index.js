@@ -36,7 +36,7 @@ function handleTimeCommand(message) {
     let then = moment(new Date(2020, 0, 30, 17, 0, 0));
     let ms = then.fromNow();
     let d = moment.duration(ms);
-    let text = "Саня узнает свою судьбу через " + ms;
+    let text = "Саня узнает свою судьбу " + ms;
     message.reply(text);
 }
 
