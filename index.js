@@ -74,9 +74,9 @@ bot.on('message',  message => {
         case 'аняптико':
 
             var fs = require('fs');
-            var files = fs.readdirSync('C:\\Users\\Valen\\OneDrive\\Images\\Namiko\\');
+            var files = fs.readdirSync('Namiko\\');
             var photo = files[Math.floor(Math.random()*files.length)];
-            message.reply("Фото Намико ", {files: ["C:\\Users\\Valen\\OneDrive\\Images\\Namiko\\"+photo]});
+            message.reply("Фото Намико ", {files: ["Namiko\\"+photo]});
             break;
         
         case 'instagram':
