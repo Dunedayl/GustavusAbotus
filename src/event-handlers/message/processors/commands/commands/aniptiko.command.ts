@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import { Command } from "../command.model";
-import { aniptikoTexts } from "../../../static/aniptiko-text.static";
+import { aniptikoTexts } from "../../../../../static/aniptiko-text.static";
 
 export class AniptikoCommand implements Command {
     public readonly name: string = 'аниптико';

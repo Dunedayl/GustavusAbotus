@@ -1,7 +1,7 @@
 import Discord from 'discord.js';
 import request from "request";
 import { Command } from "../command.model";
-import { Logger } from "../../../common/logger";
+import { Logger } from "../../../../../common/logger";
 
 export class InstagramCommand implements Command {
     public readonly name = 'instagram';

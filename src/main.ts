@@ -1,19 +1,10 @@
 import Discord from 'discord.js';
 
 import { DefaultConfig } from "./config/default.config";
-import { processCommand } from "./processors/commands/command.processor";
-import { processUser } from "./processors/user/user.processor";
-import { info } from "./common/logging";
+import { eventHandlersRegistry } from "./event-handlers/handlers.registry";
+
 
 const bot = new Discord.Client();
 
-bot.on('ready', () => {
-    info('Bot Started.');
-});
-
-bot.on('message', (message: Discord.Message) => {
-    processUser(message);
-    processCommand(DefaultConfig.prefix, message);
-});
-
+eventHandlersRegistry.init(bot);
 bot.login(DefaultConfig.token);
