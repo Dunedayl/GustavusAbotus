@@ -5,7 +5,8 @@
   "main": "out/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node out/main.js"
+    "development": "tsc-watch --onSuccess \"node ./out/main.js\"",
+    "production": "tsc && node out/main.js"
   },
   "author": "Dunedayl",
   "license": "ISC",
@@ -28,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/Dunedayl/GustavusAbotus/issues"
   },
-  "homepage": "https://github.com/Dunedayl/GustavusAbotus#readme"
+  "homepage": "https://github.com/Dunedayl/GustavusAbotus#readme",
+  "devDependencies": {
+    "tsc-watch": "^4.1.0"
+  }
 }
