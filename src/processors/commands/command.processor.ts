@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import { commandRepository } from './command.repository';
-import { info } from "../../common/logging";
+import { Logger } from "../../common/logger";
 
 export function processCommand(prefix: string, message: Discord.Message) {
     const [commandName, ...args] = message.content.substring(prefix.length).split(" ");
@@ -8,6 +8,6 @@ export function processCommand(prefix: string, message: Discord.Message) {
 
     if (commandHandler === undefined) { return; }
 
-    info('Handling `' + commandName + '` command.');
+    Logger.info('Handling `' + commandName + '` command.');
     commandHandler.handle(message, ...args);
 }

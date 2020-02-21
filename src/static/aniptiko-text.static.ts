@@ -1,8 +1,8 @@
 import fs from "fs";
 import { DefaultConfig } from "../config/default.config";
-import { info } from "../common/logging";
+import { Logger } from "../common/logger";
 
-info('Loading Aniptiko Texts...');
+Logger.info('Loading Aniptiko Texts...');
 
 export const aniptikoTexts = fs.readFileSync(
     DefaultConfig.pathToAniptikoFolder + "/data.txt",
