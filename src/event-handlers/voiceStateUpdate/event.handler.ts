@@ -3,6 +3,7 @@ import ytdl from 'ytdl-core';
 
 import { AbstractEventHandler } from '../base/abstract.event-handler';
 import { Logger } from "../../common/logger";
+import { DefaultConfig } from "../../config/default.config";
 
 
 export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
@@ -41,7 +42,7 @@ export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
             return;
         }
 
-        if (member.voiceChannel.joinable) {
+        if (DefaultConfig.onJoinSoundsEnabled && member.voiceChannel.joinable) {
             this.playYoutube('https://www.youtube.com/watch?v=SfpMNAyKILc', member);
         }
     }

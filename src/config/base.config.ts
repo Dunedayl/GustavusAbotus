@@ -4,6 +4,7 @@ export interface BaseConfig {
     token: string,
     prefix: string,
     logLevel: LogLevel,
+    onJoinSoundsEnabled: boolean,
     pathToNamikoFolder: string,
-    pathToAniptikoFolder: string
+    pathToAniptikoFolder: string,
 }
