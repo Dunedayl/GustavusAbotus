@@ -1,4 +1,6 @@
 import Discord from 'discord.js';
+import ytdl from 'ytdl-core';
+
 import { AbstractEventHandler } from '../base/abstract.event-handler';
 import { Logger } from "../../common/logger";
 
@@ -22,15 +24,43 @@ export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
         });
     }
 
-    private handleUserLeftChannel(member: Discord.GuildMember): void {
+    public handleUserLeftChannel(member: Discord.GuildMember): void {
         Logger.info(`${member.user.username} has left ${member.voiceChannel.name}`);
+
+        if (member.user.bot) {
+            return;
+        }
     }
 
-    private handleUserJoinedChannel(member: Discord.GuildMember): void {
+    public handleUserJoinedChannel(member: Discord.GuildMember): void {
         Logger.info(`${member.user.username} has joined ${member.voiceChannel.name}`);
+
+        if (member.user.bot) {
+            return;
+        }
+
+        this.playYoutube('https://www.youtube.com/watch?v=SfpMNAyKILc', member);
     }
 
-    private handleUserChangedChannel(oldMember: Discord.GuildMember, newMember: Discord.GuildMember): void {
+    public handleUserChangedChannel(oldMember: Discord.GuildMember, newMember: Discord.GuildMember): void {
         Logger.info(`${newMember.user.username} changed channel from ${oldMember.voiceChannel.name} to ${newMember.voiceChannel.name}`);
+
+        if (oldMember.user.bot) {
+            return;
+        }
+    }
+
+    private playYoutube(url: string, member: Discord.GuildMember): void {
+        const voiceChannelLogName = `${member.voiceChannel.name} voice channel`;
+        const discordStreamOptions: Discord.StreamOptions = { seek: 0, volume: 2 };
+        const youtubeStreamOptions: ytdl.downloadOptions = { filter : 'audioonly' };
+
+        member.voiceChannel.join().then(connection => {
+            const stream = ytdl(url, youtubeStreamOptions);
+            const dispatcher = connection.playStream(stream, discordStreamOptions);
+            dispatcher.on("end", end => {
+                connection.disconnect();
+            });
+        }).catch(error => Logger.error(`Got unexpected error while connecting to ${voiceChannelLogName}`, error));
     }
 }
