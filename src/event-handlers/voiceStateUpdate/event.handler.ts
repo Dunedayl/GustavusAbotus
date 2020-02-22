@@ -39,7 +39,9 @@ export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
             return;
         }
 
-        this.playYoutube('https://www.youtube.com/watch?v=SfpMNAyKILc', member);
+        if (member.voiceChannel.joinable) {
+            this.playYoutube('https://www.youtube.com/watch?v=SfpMNAyKILc', member);
+        }
     }
 
     public handleUserChangedChannel(oldMember: Discord.GuildMember, newMember: Discord.GuildMember): void {
@@ -52,7 +54,7 @@ export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
 
     private playYoutube(url: string, member: Discord.GuildMember): void {
         const voiceChannelLogName = `${member.voiceChannel.name} voice channel`;
-        const discordStreamOptions: Discord.StreamOptions = { seek: 0, volume: 2 };
+        const discordStreamOptions: Discord.StreamOptions = { seek: 0, volume: 1 };
         const youtubeStreamOptions: ytdl.downloadOptions = { filter : 'audioonly' };
 
         member.voiceChannel.join().then(connection => {
