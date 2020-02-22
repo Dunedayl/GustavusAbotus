@@ -1,6 +1,6 @@
 import moment from "moment";
 import { DefaultConfig } from "../config/default.config";
-import { LogLevelPriority, LogLevelString } from "../config/logging/log-level.model";
+import { LogLevel, LogLevelPriority, LogLevelString } from "../config/logging/log-level.model";
 
 
 class _Logger {
@@ -26,14 +26,24 @@ class _Logger {
 
         if (logLevelPriority < configLevelPriority) { return; }
 
+        const loggerFunction = this.getLoggerFunction(level);
         message = this.formatMessage(level, message);
-        context ? console.log(message, context) : console.log(message);
+        context ? loggerFunction(message, context) : loggerFunction(message);
     }
 
     protected formatMessage(level: LogLevelString, message: string) {
         const dateFormat = "YYYY/MM/DD HH:mm:ss SSS ZZ";
         const datetimeStamp = moment(Date.now()).format(dateFormat);
         return datetimeStamp + " [" + level + "] " + message;
+    }
+
+    protected getLoggerFunction(level: LogLevelString): (message?: any, ...optionalParams: any[]) => void {
+        return {
+            [LogLevel.INFO]: console.info,
+            [LogLevel.DEBUG]: console.debug,
+            [LogLevel.ERROR]: console.error,
+            [LogLevel.WARN]: console.warn,
+        }[level];
     }
 }
 
