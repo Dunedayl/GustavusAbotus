@@ -7,10 +7,12 @@ import { Logger } from "../../common/logger";
 
 export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
     protected init(bot: Discord.Client): Discord.Client {
-        /* Emitted whenever a user changes voice state - e.g. joins/leaves a channel, mutes/unmutes.
-        PARAMETER    TYPE             DESCRIPTION
-        oldMember    GuildMember      The member before the voice state update
-        newMember    GuildMember      The member after the voice state update    */
+        /*
+            Emitted whenever a user changes voice state - e.g. joins/leaves a channel, mutes/unmutes.
+            PARAMETER    TYPE             DESCRIPTION
+            oldMember    GuildMember      The member before the voice state update
+            newMember    GuildMember      The member after the voice state update
+        */
         return bot.on('voiceStateUpdate', (oldMember, newMember) => {
             if (!newMember.voiceChannelID) {
                 return this.handleUserLeftChannel(oldMember);
@@ -24,7 +26,7 @@ export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
         });
     }
 
-    public handleUserLeftChannel(member: Discord.GuildMember): void {
+    protected handleUserLeftChannel(member: Discord.GuildMember): void {
         Logger.info(`${member.user.username} has left ${member.voiceChannel.name}`);
 
         if (member.user.bot) {
@@ -32,7 +34,7 @@ export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
         }
     }
 
-    public handleUserJoinedChannel(member: Discord.GuildMember): void {
+    protected handleUserJoinedChannel(member: Discord.GuildMember): void {
         Logger.info(`${member.user.username} has joined ${member.voiceChannel.name}`);
 
         if (member.user.bot) {
@@ -44,7 +46,7 @@ export class VoiceStateUpdateEventHandler extends AbstractEventHandler {
         }
     }
 
-    public handleUserChangedChannel(oldMember: Discord.GuildMember, newMember: Discord.GuildMember): void {
+    protected handleUserChangedChannel(oldMember: Discord.GuildMember, newMember: Discord.GuildMember): void {
         Logger.info(`${newMember.user.username} changed channel from ${oldMember.voiceChannel.name} to ${newMember.voiceChannel.name}`);
 
         if (oldMember.user.bot) {
