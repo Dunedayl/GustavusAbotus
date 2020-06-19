@@ -4,12 +4,17 @@ import { AniptikoCommand } from "./commands/aniptiko.command";
 import { AnyaptikoCommand } from "./commands/anyaptiko.command";
 import { InstagramCommand } from "./commands/instagram.command";
 import { StickerCommand } from "./commands/sitcker.command";
+import { BaseRegistry } from "../../../../common/registry";
 
 
-export const commandRepository: Command[] = [
-    new TimeCommand(),
-    new AniptikoCommand(),
-    new AnyaptikoCommand(),
-    new InstagramCommand(),
-    new StickerCommand(),
-];
+class CommandRegistry extends BaseRegistry<Command> {
+    protected _classes = [
+        TimeCommand,
+        AniptikoCommand,
+        AnyaptikoCommand,
+        InstagramCommand,
+        StickerCommand,
+    ];
+}
+
+export const commandRegistry = new CommandRegistry().init();

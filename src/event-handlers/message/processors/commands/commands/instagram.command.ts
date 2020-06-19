@@ -1,7 +1,7 @@
 import Discord from 'discord.js';
 import request from "request";
 import { Command } from "../command.model";
-import { error as logError, info } from "../../../common/logging";
+import { Logger } from "../../../../../common/logger";
 
 export class InstagramCommand implements Command {
     public readonly name = 'instagram';
@@ -20,13 +20,13 @@ export class InstagramCommand implements Command {
     }
 
     protected doRequest(): void {
-        info('Loading instagram photos...');
+        Logger.info('Loading instagram photos...');
         request(this.instagramUrlPattern, this.options, this.requestCallback.bind(this));
     }
 
     protected requestCallback(error: any, res: request.Response, body: any): void {
         if (error) {
-            return logError(error);
+            return Logger.error(error);
         }
 
         if (res.statusCode == 200) {
@@ -36,7 +36,7 @@ export class InstagramCommand implements Command {
                     this.temp.push(element['node']['shortcode']);
                 }
             });
-            info('Successfully loaded instagram photos.');
+            Logger.info('Successfully loaded instagram photos.');
         }
     }
 }

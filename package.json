@@ -5,7 +5,8 @@
   "main": "out/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node out/main.js"
+    "development": "tsc-watch --onSuccess \"node ./out/main.js\"",
+    "production": "tsc && node out/main.js"
   },
   "author": "Dunedayl",
   "license": "ISC",
@@ -15,10 +16,15 @@
     "axios": "^0.19.2",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
+    "ffmpeg": "0.0.4",
     "instagram-web-api": "^2.1.0",
     "moment": "^2.24.0",
+    "node-opus": "^0.3.3",
+    "opusscript": "0.0.7",
     "tslib": "^1.10.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "ytdl": "^1.2.0",
+    "ytdl-core": "^1.0.9"
   },
   "repository": {
     "type": "git",
@@ -28,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/Dunedayl/GustavusAbotus/issues"
   },
-  "homepage": "https://github.com/Dunedayl/GustavusAbotus#readme"
+  "homepage": "https://github.com/Dunedayl/GustavusAbotus#readme",
+  "devDependencies": {
+    "tsc-watch": "^4.1.0"
+  }
 }

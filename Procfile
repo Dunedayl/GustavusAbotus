@@ -1,1 +1,1 @@
-worker: tsc && node out/main.js
+worker: npm run production
