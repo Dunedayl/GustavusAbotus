@@ -10,6 +10,6 @@ export const commandRepository: Command[] = [
     new TimeCommand(),
     new AniptikoCommand(),
     new AnyaptikoCommand(),
-    new InstagramCommand(),
+    // new InstagramCommand(), // Make it load photos on demand, rather than on Application start
     new StickerCommand(),
 ];
