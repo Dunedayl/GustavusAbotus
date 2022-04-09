@@ -16,7 +16,7 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "instagram-web-api": "^2.1.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5"
   },
